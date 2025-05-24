@@ -20,7 +20,7 @@ jobs:
           workflow: cron.yml
           workflow_conclusion: success
       - name: Move database
-        continue-on-error: true
+        if: steps.download.outcome == 'success'
         run: mv rss2telegram/rss2telegram.db rss2telegram.db
       - name: Setup Python
         uses: actions/setup-python@v5
